@@ -1,0 +1,45 @@
+/* recipeSearch.css */
+
+.recipe-search__wrapper {
+    margin-top: 10rem;     /* TEMP */
+}
+
+.recipe-search__input {
+    background-color: rgba(250, 235, 215, 0.5);
+    padding: 0.5rem 1rem;
+    border-radius: 0.75rem;
+    text-align: center;
+    aspect-ratio: 10;
+    width: 15rem;
+}
+
+.recipe-search__input:hover {
+    border-color: rgba(174, 149, 120, 0.74);
+    background-color: rgba(250, 235, 215, 0.62);
+}
+
+.recipe-search__button {
+    margin-left: 0.5rem;
+    padding: 0.1rem;
+    aspect-ratio: 4;
+    border-color: darkcyan;
+    background-color: aliceblue;
+}
+
+.recipe-search__button:hover {
+    margin-left: 0.5rem;
+    padding: 0.1rem;
+    aspect-ratio: 4;
+    border-color: darkcyan;
+    background-color: #c2def6;
+}
+
+#menuSelection {
+    background-color: grey;
+    width: 10rem;
+    aspect-ratio: 1;
+    position: relative;
+    left: 59.1%;
+    margin-top: -0.40rem;
+    display: none;
+}
