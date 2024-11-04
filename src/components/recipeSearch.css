@@ -1,7 +1,7 @@
 /* recipeSearch.css */
 
 .recipe-search__wrapper {
-    margin-top: 10rem;     /* TEMP */
+    margin-top: 1rem;     /* TEMP */
 }
 
 .recipe-search__input {
@@ -33,13 +33,60 @@
     border-color: darkcyan;
     background-color: #c2def6;
 }
+.recipe-search__form {
+    position: relative; /* Allows positioning of #menuSelection */
+    display: inline-block;
+}
 
 #menuSelection {
-    background-color: grey;
-    width: 10rem;
-    aspect-ratio: 1;
-    position: relative;
-    left: 59.1%;
-    margin-top: -0.40rem;
-    display: none;
+    background-color: rgba(128, 128, 128, 0.56);
+    border-radius: 0.5rem;
+    border-style: solid;
+    width: 20rem;
+    aspect-ratio: 2;
+    position: absolute; /* Positions relative to .recipe-search__form */
+    top: 100%; /* Positions right below the button */
+    left: 0.5rem; /* Aligns it with the button */
+    display: none; /* Use display:block to show */
+    padding: 0.5rem;
+}
+
+#options {
+    margin-top: 1.25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#cuisine {
+    position: absolute;
+    display: flex;
+}
+#allergies {
+    position: absolute;
+    margin-top: 33%;
+    display: flex;
+}
+#diet {
+    position: absolute;
+    margin-top: 66%;
+    display: flex;
+}
+
+.optionButton {
+    aspect-ratio: 2;
+    background-color: aliceblue;
+    padding: 0.5rem;
+    border-radius: 0.15rem;
+}
+
+.hangoverMenu {
+    background-color: rgb(184, 184, 184);
+    border-left-style: solid;
+    border-top-style: solid;
+    width: 1.75rem;
+    height: 2rem;
+    position: absolute; /* Positions relative to .recipe-search__form */
+    top: -0.1rem;
+    left: -0.1rem;
 }

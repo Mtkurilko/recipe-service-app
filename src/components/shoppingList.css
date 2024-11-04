@@ -1,0 +1,73 @@
+/* shoppingList.css */
+
+.shoppingList {
+    display: flex; /* Use flexbox for centering */
+    flex-direction: column; /* Align items vertically */
+    justify-content: center; /* Center items vertically */
+    align-items: center; /* Center items horizontally */
+    text-align: center; /* Center text */
+    padding: 20px; /* Add some padding around the list */
+    background-color: #f0f0f0; /* Light background color */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    max-width: 800px; /* Limit the maximum width */
+    margin: 20px auto; /* Center the shopping list with margin */
+}
+
+.shoppingList h1 {
+    margin-bottom: 20px; /* Space below the title */
+    color: #333; /* Darker text for better readability */
+}
+
+.shoppingList__list {
+    display: grid; /* Use grid layout for meal items */
+    grid-template-columns: repeat(3, 1fr); /* Create 3 equal columns */
+    gap: 20px; /* Space between items */
+
+    list-style-type: none; /* Remove default list bullets */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margin */
+    border-radius: 10px; /* Rounded corners */
+    overflow: hidden; /* Contain floated elements */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.shoppingList__item {
+    background-color: #fff; /* White background for list items */
+    border: 1px solid #ddd; /* Add border to each item */
+    border-radius: 8px; /* Rounded corners for items */
+    padding: 15px; /* Padding for each item */
+    transition: background-color 0.3s; /* Smooth background transition */
+}
+
+.shoppingList__item:hover {
+    background-color: #ededed; /* Highlight on hover */
+}
+
+.shoppingList__item:last-child {
+    border-bottom: none; /* Remove border from the last item */
+}
+
+.ingredient {
+    margin: 5px 0; /* Space between ingredients */
+    font-size: 14px; /* Font size for ingredients */
+    color: #666; /* Lighter text color */
+}
+
+.shoppingList__totals {
+    margin-top: 20px; /* Space above the totals section */
+    padding: 15px; /* Padding for totals */
+    background-color: #e0e0e0; /* Light gray background for totals */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.shoppingList__totals h2 {
+    margin-bottom: 10px; /* Space below the totals title */
+    color: #333; /* Darker text for better readability */
+}
+
+.ingredient-total {
+    margin: 5px 0; /* Space between total ingredients */
+    font-weight: bold; /* Make totals bold */
+}

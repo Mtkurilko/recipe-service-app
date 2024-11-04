@@ -1,0 +1,68 @@
+/* mealPlanner.css */
+
+.meal-planner {
+    margin-top: 0.5rem; /* TEMP */
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.meal-planner__col1,
+.meal-planner__col2 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Four columns for col1 */
+    gap: 2rem;
+    padding: 1rem 1rem 3rem 1rem;
+    background-color: whitesmoke;
+    border: 0.25rem solid black;
+    border-radius: 0.5rem;
+    height: fit-content;
+    min-height: 15rem;
+    filter: drop-shadow(1px 1px 2px black);
+}
+
+.meal-planner__col2 {
+    margin-top: 0.5rem;
+    grid-template-columns: repeat(3, 1fr); /* Three columns for col2 */
+    justify-items: center;
+}
+
+.day {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Aligns text to the top */
+    text-align: center;
+    background-color: lightgray;
+    border: 0.25rem dashed black;
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    height: 100%;
+    width: 13rem;
+    filter: drop-shadow(1px 1px 2px black);
+}
+
+.dayTitle {
+    display: flex;
+    align-items: center; /* Centers text vertically */
+    justify-content: center; /* Centers text horizontally */
+    text-align: center; /* Additional horizontal centering for good measure */
+    margin-top: -0.25rem;
+    background-color: aliceblue;
+    padding: 0 1rem; /* Adjusted for better centering */
+    height: 2rem;
+    border-radius: 0.5rem;
+    border: 0.1rem solid black;
+    filter: drop-shadow(1px 1px 5px rgba(62, 62, 62, 0.63));
+}
+
+
+.remBut {
+    margin-left: 1rem;
+    background-color: darksalmon;
+}
+
+.mealTit {
+    font-weight: bold;
+}
