@@ -1,0 +1,63 @@
+/* recipeDisplay.css */
+
+.recipesContainer {
+    display: flex;
+    padding-left: 10rem;
+    padding-right: 10rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.recipe {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: lightgray;
+    border-radius: 0.5rem;
+    filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.2));
+}
+
+.recipeTitle {
+    float: left;
+}
+.actionButton {
+    position: absolute;
+    left: 9rem;
+    top: 2.25rem;
+    background-color: transparent;
+    border-radius: 20rem;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.actionButton:hover {
+    background-color: rgba(0, 0, 0, 0.12);
+}
+#actionIMG {
+    aspect-ratio: auto;
+    width: 1rem;
+}
+
+.recipeAttribute {
+    float: right;
+}
+
+.recipeDescription {
+    margin-top: 3rem;
+    text-align: justify;
+    width: 70%;
+}
+
+.ingredientList {
+    text-align: right;
+    margin-top: 2rem;
+    position: absolute;
+    top: 3rem;
+    right: 1rem;
+    width:25%;
+    column-count: 2;
+    column-fill: balance;
+    column-gap: 3rem;
+    column-rule-style: double;
+    column-rule-width: 0.3rem;
+}

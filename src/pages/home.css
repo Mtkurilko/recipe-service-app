@@ -1,5 +1,19 @@
 /* home.css */
 
+.pBody {
+    padding-top: 5rem;
+    background-color: #fafaf3;
+    height: 100vh;
+}
+
 .homeHeader {
+    position: fixed;
+    top: 0;
+    width: 100%;
     justify-content: center;
+    z-index: 1;
+    background-color: #ffffff;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(62, 62, 62, 0.63);
+    filter: drop-shadow(1px 1px 5px rgba(62, 62, 62, 0.33));
 }

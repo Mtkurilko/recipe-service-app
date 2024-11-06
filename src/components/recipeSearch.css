@@ -85,7 +85,7 @@
     border-left-style: solid;
     border-top-style: solid;
     width: 1.75rem;
-    height: 2rem;
+    height: 1rem;
     position: absolute; /* Positions relative to .recipe-search__form */
     top: -0.1rem;
     left: -0.1rem;
