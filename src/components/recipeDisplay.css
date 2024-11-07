@@ -111,3 +111,58 @@
     border-radius: 0.15rem;
     filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.2));
 }
+
+.chooseDayBox {
+    position: fixed;
+    justify-content: center;
+    top: 30%;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.51);
+    width: 30%;
+    height: 30%;
+    border-radius: 0.5rem;
+    display: none;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.5rem 0.5rem 2rem 0.5rem;
+    border-style: solid;
+}
+.chooseDayBox.show {
+    display: flex;
+}
+#chooseDayh5 {
+    color: white;
+}
+
+.addedBox {
+    position: fixed;
+    top: 5.5rem;
+    justify-content: center;
+    z-index: 20;
+    background-color: rgba(159, 159, 159, 0.36);
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    border-radius: 1rem;
+    display: none;
+    opacity: 0;
+    animation: fadeShiftInOut 2s ease-in-out forwards;
+}
+
+.addedBox.show {
+  display: revert;
+  opacity: 1;
+}
+
+@keyframes fadeShiftInOut {
+  0% {
+    opacity: 0;
+    transform: translateY(-1rem); /* Start above */
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(1rem); /* Move down */
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-1rem); /* Move back above and fade out */
+  }
+}

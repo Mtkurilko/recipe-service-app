@@ -15,7 +15,7 @@
 }
 
 .shoppingList h1 {
-    margin-bottom: 20px; /* Space below the title */
+    margin-bottom: 2rem; /* Space below the title */
     color: #333; /* Darker text for better readability */
 }
 
@@ -23,20 +23,20 @@
     display: grid; /* Use grid layout for meal items */
     grid-template-columns: repeat(3, 1fr); /* Create 3 equal columns */
     gap: 20px; /* Space between items */
+    background-color: transparent;
 
     list-style-type: none; /* Remove default list bullets */
     padding: 0; /* Remove padding */
     margin: 0; /* Remove margin */
     border-radius: 10px; /* Rounded corners */
     overflow: hidden; /* Contain floated elements */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
 .shoppingList__item {
     background-color: #fff; /* White background for list items */
     border: 1px solid #ddd; /* Add border to each item */
     border-radius: 8px; /* Rounded corners for items */
-    padding: 15px; /* Padding for each item */
+    padding: 1rem; /* Padding for each item */
     transition: background-color 0.3s; /* Smooth background transition */
 }
 
@@ -49,7 +49,9 @@
 }
 
 .ingredientShop {
-    margin: 5px 0; /* Space between ingredients */
+    position: relative;
+    right: 5%;
+    margin: 0.5rem 0rem 0 0; /* Space between ingredients */
     font-size: 14px; /* Font size for ingredients */
     color: #666; /* Lighter text color */
 }
@@ -70,4 +72,16 @@
 .ingredient-total {
     margin: 5px 0; /* Space between total ingredients */
     font-weight: bold; /* Make totals bold */
+}
+
+.shoppingList__title {
+    margin-bottom: 1rem;
+}
+
+.removeButton {
+    background-color: lightcoral;
+    margin-left: 1rem;
+    color: white;
+    border-width: 0.1rem;
+    float: right;
 }

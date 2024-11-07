@@ -1,12 +1,12 @@
-import React from 'react';
-import "./shoppingList.css"
+import React, { useState } from 'react';
+import './shoppingList.css';
 
 const defaultItems = [
     {
         title: "Milkshake",
         url: "https://www.example.com/milkshake",
         ingredients: {
-            "Milk (liters)": [2, 2.00], // Including unit within the ingredient key
+            "Milk (liters)": [2, 2.00],
             "Ice Cream (g)": [200, 3.50],
             "Sugar (g)": [50, 0.50]
         }
@@ -35,7 +35,7 @@ const defaultItems = [
         title: "Milkshake",
         url: "https://www.example.com/milkshake",
         ingredients: {
-            "Milk (liters)": [2, 2.00], // Including unit within the ingredient key
+            "Milk (liters)": [2, 2.00],
             "Ice Cream (g)": [200, 3.50],
             "Sugar (g)": [50, 0.50]
         }
@@ -63,10 +63,17 @@ const defaultItems = [
 ];
 
 function ShoppingList({ items = defaultItems }) {
+    const [shoppingList, setShoppingList] = useState(items);
+
+    const removeItem = (index) => {
+        const updatedList = shoppingList.filter((_, i) => i !== index);
+        setShoppingList(updatedList);
+    };
+
     const ingredientTotals = {};
 
     // Calculate total quantities and costs for each ingredient
-    items.forEach(item => {
+    shoppingList.forEach(item => {
         Object.entries(item.ingredients).forEach(([ingredient, [quantity, price]]) => {
             if (!ingredientTotals[ingredient]) {
                 ingredientTotals[ingredient] = { quantity: 0, totalCost: 0 };
@@ -84,27 +91,32 @@ function ShoppingList({ items = defaultItems }) {
         <div className="shoppingList">
             <h1>Shopping List</h1>
             <ul className="shoppingList__list">
-                    {items.map((item, index) => (
-                        <li key={index} className="shoppingList__item">
+                {shoppingList.map((item, index) => (
+                    <li key={index} className="shoppingList__item">
+                        <div className="shoppingList__title">
                             <a className="mealTit" href={item.url} target="_blank" rel="noopener noreferrer">
                                 {item.title}
                             </a>
-                            <ul>
-                                {Object.entries(item.ingredients).map(([ingredient, [quantity, price]], idx) => (
-                                    <li key={idx} className="ingredientShop">
-                                        {ingredient.split('(')[0]+"("}{quantity}{ingredient.split('(')[1]}, Cost: ${price.toFixed(2)}
-                                    </li>
-                                ))}
-                            </ul>
-                        </li>
-                    ))}
+                            <button onClick={() => removeItem(index)} className="removeButton">
+                                x
+                            </button>
+                        </div>
+                        <ul>
+                            {Object.entries(item.ingredients).map(([ingredient, [quantity, price]], idx) => (
+                                <li key={idx} className="ingredientShop">
+                                    {ingredient.split('(')[0] + "("}{quantity}{ingredient.split('(')[1]}, Cost: ${price.toFixed(2)}
+                                </li>
+                            ))}
+                        </ul>
+                    </li>
+                ))}
             </ul>
             <div className="shoppingList__totals">
                 <h2>Total Ingredients</h2>
                 <ul>
                     {Object.entries(ingredientTotals).map(([ingredient, details], index) => (
                         <li key={index} className="ingredient-total">
-                            {ingredient.split('(')[0]+"("}{details.quantity}{ingredient.split('(')[1]}, Cost: ${details.totalCost.toFixed(2)}
+                            {ingredient.split('(')[0] + "("}{details.quantity}{ingredient.split('(')[1]}, Cost: ${details.totalCost.toFixed(2)}
                         </li>
                     ))}
                 </ul>
