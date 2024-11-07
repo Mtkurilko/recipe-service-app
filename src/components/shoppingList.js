@@ -91,7 +91,7 @@ function ShoppingList({ items = defaultItems }) {
                             </a>
                             <ul>
                                 {Object.entries(item.ingredients).map(([ingredient, [quantity, price]], idx) => (
-                                    <li key={idx} className="ingredient">
+                                    <li key={idx} className="ingredientShop">
                                         {ingredient.split('(')[0]+"("}{quantity}{ingredient.split('(')[1]}, Cost: ${price.toFixed(2)}
                                     </li>
                                 ))}
@@ -108,7 +108,7 @@ function ShoppingList({ items = defaultItems }) {
                         </li>
                     ))}
                 </ul>
-                <p><strong>Overall Total Cost:</strong> ${totalCost}</p>
+                <p><u><strong>Overall Total Cost:</strong> ${totalCost}</u></p>
             </div>
         </div>
     );

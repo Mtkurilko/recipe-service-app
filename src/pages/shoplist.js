@@ -1,21 +1,21 @@
 import React from 'react';
-import RecipeSearch from "../components/recipeSearch";
 import "./pageDefault.css"
+import RecipeSearch from "../components/recipeSearch";
 import NavBurger from "../components/navBurger";
-import RecipeDisplay from "../components/recipeDisplay";
 import logo from "../images/RecipeGuru.png";
+import ShoppingList from "../components/shoppingList";
 
-function Home () {
+function ShopList(props) {
     return (
         <div className="pBody">
             <div className="homeHeader">
-                <NavBurger />
-                <a href="/"><img id="appLogo" src={logo} alt="Recipe Guru" /></a>
+                <NavBurger/>
+                <a href="/"><img id="appLogo" src={logo} alt="Recipe Guru"/></a>
                 <RecipeSearch />
             </div>
-            <RecipeDisplay />
+            <ShoppingList />
         </div>
     );
 }
 
-export default Home;
+export default ShopList;

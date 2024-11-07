@@ -1,7 +1,7 @@
 /* mealPlanner.css */
 
 .meal-planner {
-    margin-top: 0.5rem; /* TEMP */
+    margin-top: 2rem; /* TEMP */
     display: flex;
     flex-direction: column;
     gap: 0.5rem;

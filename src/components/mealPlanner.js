@@ -30,7 +30,6 @@ function MealPlanner({ initialMeals = defaultMeals }) { // Set a default value h
 
     return (
         <div className="meal-planner">
-            <h1 className="meal-planner__title">Meal Planner</h1>
             <div className="meal-planner__content">
                 <div className='meal-planner__col1'>
                     {["Sunday", "Monday", "Tuesday", "Wednesday"].map(day => (

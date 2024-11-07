@@ -1,9 +1,11 @@
-/* home.css */
+/* pageDefault.css */
 
 .pBody {
     padding-top: 5rem;
+    padding-bottom: 3rem;
     background-color: #fafaf3;
-    height: 100vh;
+    min-height: 100vh;
+    height: fit-content;
 }
 
 #appLogo {

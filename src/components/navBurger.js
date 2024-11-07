@@ -14,17 +14,13 @@ function NavBurger() {
 
                     <ul id="menu">
                         <li>
-                            <a href="">
-                                <label htmlFor="menuCheckbox" onClick="this.parentNode.click();">Home</label>
-                            </a>
+                            <label htmlFor="menuCheckbox"><a href="/">Home</a></label>
                         </li>
                         <li>
-                            <a href="">
-                                <label htmlFor="menuCheckbox" onClick="this.parentNode.click();">About</label>
-                            </a>
+                            <label htmlFor="menuCheckbox"><a href="/plan">Meal Planner</a></label>
                         </li>
-                        <li><label htmlFor="menuCheckbox"><a href="">Info</a></label></li>
-                        <li><label htmlFor="menuCheckbox"><a href="">Contact</a></label></li>
+                        <li><label htmlFor="menuCheckbox"><a href="/shoplist">Shopping List</a></label></li>
+                        <li><label htmlFor="menuCheckbox"><a href="/about">About Project</a></label></li>
                     </ul>
                 </div>
             </nav>
