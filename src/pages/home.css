@@ -6,6 +6,14 @@
     height: 100vh;
 }
 
+#appLogo {
+    aspect-ratio: initial;
+    width: 15rem;
+    position: absolute;
+    left: 15%;
+    top: 15%;
+}
+
 .homeHeader {
     position: fixed;
     top: 0;
