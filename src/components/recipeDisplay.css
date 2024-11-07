@@ -2,6 +2,7 @@
 
 .recipesContainer {
     display: flex;
+    flex-direction: column;
     padding-left: 10rem;
     padding-right: 10rem;
     justify-content: center;
@@ -9,7 +10,10 @@
 }
 
 .recipe {
+    width:90%;
+    height: 15rem;
     margin-top: 1rem;
+    margin-bottom: 2rem;
     padding: 1rem;
     background-color: lightgray;
     border-radius: 0.5rem;
@@ -19,16 +23,30 @@
 .recipeTitle {
     float: left;
 }
+
 .actionButton {
     position: absolute;
     left: 9rem;
     top: 2.25rem;
     background-color: transparent;
+    z-index: 60;
     border-radius: 20rem;
     border: none;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.actionMenu {
+    display: none;
+    position: absolute;
+    left: 8.95rem;
+    top: 2rem;
+    z-index: 50;
+    width: 10rem;
+    height: 5rem;
+    background-color: aliceblue;
+    justify-content: center;
+    align-items: center;
 }
 .actionButton:hover {
     background-color: rgba(0, 0, 0, 0.12);
@@ -36,6 +54,14 @@
 #actionIMG {
     aspect-ratio: auto;
     width: 1rem;
+}
+.actionMenuButton {
+    border: none;
+    width: 100%;
+    height: 50%;
+}
+.actionMenuButton:hover {
+    background-color: rgba(0, 0, 0, 0.12);
 }
 
 .recipeAttribute {
@@ -45,19 +71,43 @@
 .recipeDescription {
     margin-top: 3rem;
     text-align: justify;
-    width: 70%;
+    width: 62%;
+    height: 7.5rem;
+    overflow-y: auto;
+    background-color: aliceblue;
+    padding: 1.5rem;
+    border-radius: 0.15rem;
+    filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.2));
 }
 
 .ingredientList {
     text-align: right;
     margin-top: 2rem;
     position: absolute;
-    top: 3rem;
+    top: 3.15rem;
     right: 1rem;
     width:25%;
+    height: 6.5rem;
+    overflow-y: auto;
     column-count: 2;
     column-fill: balance;
     column-gap: 3rem;
     column-rule-style: double;
     column-rule-width: 0.3rem;
+    background-color: aliceblue;
+    padding: 2rem;
+    border-radius: 0.15rem;
+    filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.2));
+}
+
+.ingredient {
+    color: black;
+}
+
+.recipeAttribute {
+    background-color: aliceblue;
+    margin: 0.25rem;
+    padding: 0.5rem;
+    border-radius: 0.15rem;
+    filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.2));
 }
