@@ -7,59 +7,63 @@
     align-items: center; /* Center items horizontally */
     text-align: center; /* Center text */
     padding: 1rem 5rem 5rem 5rem; /* Add some padding around the list */
-    background-color: #f3f3f3; /* Light background color */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 2px 10px rgb(0, 0, 0, 0.3); /* Subtle shadow for depth */
+    background-color: #c5d5c1; /* Light background color */
+    border-radius: 1rem; /* Rounded corners */
+    border-style: solid;
+    border-width: 0.01rem;
+    box-shadow: 0 0 0.3rem rgb(0, 0, 0, 0.6); /* Subtle shadow for depth */
     max-width: 800px; /* Limit the maximum width */
     margin: 2rem auto; /* Center the shopping list with margin */
 }
 
 .shoppingList h1 {
     margin-bottom: 2rem; /* Space below the title */
-    color: #333; /* Darker text for better readability */
+    color: #076007; /* Darker text for better readability */
+    filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
 }
 
 .shoppingList__list {
     display: grid; /* Use grid layout for meal items */
     grid-template-columns: repeat(3, 1fr); /* Create 3 equal columns */
-    gap: 20px; /* Space between items */
+    gap: 1rem; /* Space between items */
     background-color: transparent;
 
     list-style-type: none; /* Remove default list bullets */
     padding: 0; /* Remove padding */
-    margin: 0; /* Remove margin */
+    margin-top: 0; /* Remove margin */
     border-radius: 10px; /* Rounded corners */
     overflow: hidden; /* Contain floated elements */
 }
 
 .shoppingList__item {
-    background-color: #fff; /* White background for list items */
-    border: 1px solid #ddd; /* Add border to each item */
+    background-color: #fff8f0; /* White background for list items */
+    border: 0.1rem solid #1f3719; /* Add border to each item */
     border-radius: 8px; /* Rounded corners for items */
     padding: 1rem; /* Padding for each item */
     transition: background-color 0.3s; /* Smooth background transition */
 }
 
 .shoppingList__item:hover {
-    background-color: #ededed; /* Highlight on hover */
+    background-color: #f0f6ef; /* Highlight on hover */
 }
 
-.shoppingList__item:last-child {
-    border-bottom: none; /* Remove border from the last item */
+#listOfIGS {
+    margin-top: 2rem;
 }
 
 .ingredientShop {
     position: relative;
     right: 5%;
-    margin: 0.5rem 0rem 0 0; /* Space between ingredients */
+    margin: 0.5rem 0 0 0; /* Space between ingredients */
     font-size: 14px; /* Font size for ingredients */
-    color: #666; /* Lighter text color */
+    color: #ac4a10; /* Lighter text color */
 }
 
 .shoppingList__totals {
     margin-top: 20px; /* Space above the totals section */
     padding: 15px; /* Padding for totals */
-    background-color: #e0e0e0; /* Light gray background for totals */
+    border: 0.1rem solid #1f3719;
+    background-color: white; /* Light gray background for totals */
     border-radius: 10px; /* Rounded corners */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
@@ -70,8 +74,11 @@
 }
 
 .ingredient-total {
+    position: relative;
+    right: 3%;
     margin: 5px 0; /* Space between total ingredients */
     font-weight: bold; /* Make totals bold */
+    color: darksalmon;
 }
 
 .shoppingList__title {

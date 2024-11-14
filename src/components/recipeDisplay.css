@@ -15,19 +15,22 @@
     margin-top: 1rem;
     margin-bottom: 1rem;
     padding: 1rem;
-    background-color: lightgray;
+    background-color: #b0bdaf;
     border-radius: 0.5rem;
     filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.2));
 }
 
 .recipeTitle {
     float: left;
+    position: absolute;
+    top: 2%;
+    margin-left: 1.5rem;
 }
 
 .actionButton {
     position: absolute;
-    left: 9rem;
-    top: 2.25rem;
+    left: 0.5rem;
+    top: 1.7rem;
     background-color: transparent;
     z-index: 60;
     border-radius: 20rem;
@@ -39,12 +42,12 @@
 .actionMenu {
     display: none;
     position: absolute;
-    left: 8.95rem;
-    top: 2rem;
+    left: 0.4rem;
+    top: 1.4rem;
     z-index: 50;
     width: 10rem;
     height: 5rem;
-    background-color: aliceblue;
+    background-color: #fff8f0;
     justify-content: center;
     align-items: center;
 }
@@ -68,20 +71,39 @@
     float: right;
 }
 
+.recipeDescription ol, .recipeDescription ul {
+  list-style-position: inside;  /* Keeps the numbers or bullets inside the box */
+  padding: 0;                  /* Remove padding */
+  margin: 0;                   /* Remove margin */
+}
+
 .recipeDescription {
     margin-top: 3rem;
     text-align: justify;
-    width: 62%;
-    height: 7.5rem;
+    list-style-position: outside;
+    position: absolute;
+    left: 31%;
+    width: 32%;
+    height: 8.7rem;
     overflow-y: auto;
-    background-color: aliceblue;
-    padding: 1.5rem;
+    background-color: #fff8f0;
+    padding: 0.9rem 1.2rem 0.9rem 1rem;
     border-radius: 0.15rem;
     filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.2));
 }
 
+.recipeImage {
+    position: absolute;
+    top: 24%;
+    left: 1.5%;
+    aspect-ratio: initial;
+    width: 17.5rem;
+    border-style: solid;
+    border-radius: 2rem;
+}
+
 .ingredientList {
-    text-align: right;
+    text-align: center;
     margin-top: 2rem;
     position: absolute;
     top: 3.15rem;
@@ -94,18 +116,21 @@
     column-gap: 3rem;
     column-rule-style: double;
     column-rule-width: 0.3rem;
-    background-color: aliceblue;
+    background-color: #fff8f0;
     padding: 2rem;
     border-radius: 0.15rem;
     filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.2));
 }
 
 .ingredient {
+    font-size: 0.8rem;
     color: black;
+    margin-top: 0.3rem;
+    margin-bottom: 0.3rem;
 }
 
 .recipeAttribute {
-    background-color: aliceblue;
+    background-color: #fff8f0;
     margin: 0.25rem;
     padding: 0.5rem;
     border-radius: 0.15rem;

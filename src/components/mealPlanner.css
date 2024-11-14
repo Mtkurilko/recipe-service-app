@@ -13,8 +13,8 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* Four columns for col1 */
     gap: 2rem;
-    padding: 1rem 1rem 3rem 1rem;
-    background-color: whitesmoke;
+    padding: 1rem 1rem 1.5rem 1rem;
+    background-color: #fff8f0;
     border: 0.25rem solid black;
     border-radius: 0.5rem;
     height: fit-content;
@@ -34,12 +34,13 @@
     align-items: center;
     justify-content: flex-start; /* Aligns text to the top */
     text-align: center;
-    background-color: lightgray;
+    background-color: #bbc8ab;
     border: 0.25rem dashed black;
     border-radius: 0.5rem;
-    padding: 0.75rem;
-    height: 100%;
+    padding: 0.75rem 0.1rem 0rem 1rem;
+    height: 16rem;
     width: 13rem;
+    overflow-y: scroll;
     filter: drop-shadow(1px 1px 2px black);
 }
 
@@ -49,7 +50,7 @@
     justify-content: center; /* Centers text horizontally */
     text-align: center; /* Additional horizontal centering for good measure */
     margin-top: -0.25rem;
-    background-color: aliceblue;
+    background-color: #fff8f0;
     padding: 0 1rem; /* Adjusted for better centering */
     height: 2rem;
     border-radius: 0.5rem;
@@ -58,11 +59,22 @@
 }
 
 
+.mealList {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    height: 100%;
+    width: 80%;
+    overflow-y: scroll;
+}
+
 .remBut {
     margin-left: 1rem;
     background-color: darksalmon;
 }
-
 .mealTit {
     font-weight: bold;
+    color: #eaa102;
+    float: left;
+    filter: drop-shadow(0.08rem 0.08rem 0.05rem #4a2b06);
 }

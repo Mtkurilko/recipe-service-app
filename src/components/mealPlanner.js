@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import './mealPlanner.css';
 
 const defaultMeals = {
-        Sunday: [{ title: "Pancakes", url: "/pancakes" }],
+        Sunday: [{ title: "Pancakes", url: "/pancakes" },{ title: "Salsa", url: "/salsa" }],
         Monday: [{ title: "Salad", url: "/salad" }],
-        Tuesday: [],
+        Tuesday: [{ title: "Pancakes", url: "/pancakes" }],
         Wednesday: [{ title: "Spaghetti", url: "/spaghetti" }],
         Thursday: [{ title: "Tacos", url: "/tacos" }],
         Friday: [],
