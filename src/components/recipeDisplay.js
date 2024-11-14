@@ -78,12 +78,36 @@ function RecipeDisplay() {
     }
   };
 
-  const addShop = (index) => {
+  const addShop = async (index) => {
     const menu = document.getElementById(`actionMenu-${index}`);
     const added = document.getElementById('addedBox');
     menu.style.display = 'none';
-    
+
+    let currRec = recipes[index]; // Recipe being accessed
+
+    try { // Grab recipe if already exists
+      const response = await axios.get(`http://localhost:8080/api/recipes/id/${currRec.id}`);
+      console.log("Recipe received:", response.data);
+      currRec = response.data;
+    }
+    catch (error) {
+      // Let currRec stay same because doesnt exist in database
+    }
+
+    if (currRec.loc === "meal" || currRec.loc === "both") {
+      currRec.loc = "both"; // add to both
+    }
+    else {
+      currRec.loc = "shop"; // add location
+    }
+
     // SEND LIST [RECIPE NAME, ID] to shopping list
+    try {
+      const response = await axios.post("http://localhost:8080/api/recipes", currRec);
+      console.log("Recipe added:", response.data);
+    } catch (error) {
+      console.error("Error adding recipe:", error);
+    }
 
     added.classList.add('show');
     setTimeout(() => {
