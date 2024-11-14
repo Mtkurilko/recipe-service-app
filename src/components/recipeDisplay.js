@@ -111,8 +111,18 @@ function RecipeDisplay() {
     chooseDay.classList.add('show');
     const clickedButton = await waitForClick(buttons);
     chooseDay.classList.remove('show');
-    const currRec = recipes[index]; // Recipe being accessed
-    if (currRec.loc === "shop") {
+    let currRec = recipes[index]; // Recipe being accessed
+
+    try { // Grab recipe if already exists
+      const response = await axios.get(`http://localhost:8080/api/recipes/id/${currRec.id}`);
+      console.log("Recipe received:", response.data);
+      currRec = response.data;
+    }
+    catch (error) {
+      // Let currRec stay same because doesnt exist in database
+    }
+
+    if (currRec.loc === "shop" || currRec.loc === "both") {
       currRec.loc = "both"; // add to both
     }
     else {

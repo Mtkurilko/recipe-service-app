@@ -40,7 +40,7 @@
     padding: 0.75rem 0.1rem 0rem 1rem;
     height: 16rem;
     width: 13rem;
-    overflow-y: scroll;
+    overflow-y: auto;
     filter: drop-shadow(1px 1px 2px black);
 }
 
@@ -65,7 +65,7 @@
     gap: 1rem;
     height: 100%;
     width: 80%;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .remBut {
