@@ -82,7 +82,7 @@ function RecipeDisplay() {
     const menu = document.getElementById(`actionMenu-${index}`);
     const added = document.getElementById('addedBox');
     menu.style.display = 'none';
-
+    
     // SEND LIST [RECIPE NAME, ID] to shopping list
 
     added.classList.add('show');
@@ -118,7 +118,14 @@ function RecipeDisplay() {
     else {
       currRec.loc = "meal"; // add location
     }
-    currRec.day = clickedButton.innerText;
+    if (currRec.day) {
+      if (!currRec.day.includes(clickedButton.innerText)) {
+        currRec.day.push(clickedButton.innerText);
+      }
+    }
+    else {
+      currRec.day = [clickedButton.innerText]; // add currRec[day] = the day chosen to list
+    }
     console.log(`${clickedButton.innerText}: Sending them this: ${JSON.stringify(currRec)}`);
     // Send full recipe {} with next datapoint day to clickedButton (the day) NOT ALL RECIPES
     try {
