@@ -81,54 +81,61 @@ function MealPlanner() { // Set a default value here
     };
 
     const removeMeal = async (day, mealID) => {
-        setMeals(async (prevMealPlanner) => {
-            // Find the meal in the day's meals
-            const mealIndex = prevMealPlanner[day].findIndex(meal => meal.id === mealID);
+        const prevMealPlanner = meals; // Extract state if necessary
+        const mealIndex = prevMealPlanner[day].findIndex(meal => meal.id === mealID);
 
-            // If the meal isn't found, return the existing meal planner state
-            if (mealIndex === -1) return prevMealPlanner;
+        if (mealIndex === -1) return;
 
-            // Extract the meal object from the day's meals
-            let mealToRemove = prevMealPlanner[day][mealIndex];
+        const mealToRemove = prevMealPlanner[day][mealIndex];
+        const isMealInMultipleDays = Object.keys(prevMealPlanner).some(otherDay =>
+            otherDay !== day && prevMealPlanner[otherDay].some(meal => meal.id === mealID)
+        );
 
-            // Check if the meal appears in multiple days
-            const isMealInMultipleDays = Object.keys(prevMealPlanner).some(otherDay =>
-                otherDay !== day && prevMealPlanner[otherDay].some(meal => meal.id === mealID)
-            );
+        const updatedMealPlanner = {
+            ...prevMealPlanner,
+            [day]: prevMealPlanner[day].filter(meal => meal.id !== mealID),
+        };
 
-            // Prepare the updated meal planner state without the removed meal for that day
-            const updatedMealPlanner = {
-                ...prevMealPlanner,
-                [day]: prevMealPlanner[day].filter(meal => meal.id !== mealID),
-            };
-
-            // If `loc` is "both" and meal is only on this one day, update `loc` to "shop"
-            if (mealToRemove.loc === 'both' && !isMealInMultipleDays) {
-                let mealRep = mealToRemove;
-                try {
-                    const response = await axios.get(`http://localhost:8080/api/recipes/id/${mealID}`);
-                    mealRep = response.data;
-                } catch (error) {
-                    console.error(`Error fetching recipe ${mealID}:`, error);
-                }
-
-                mealRep.loc = 'shop';  // set to shop
-
-                // Update the database with the new `loc` value
-                axios.put(`http://localhost:8080/api/recipes/id/${mealID}`, mealRep)
-                    .then(() => console.log(`Meal ${mealID} updated to 'shop' in database.`))
-                    .catch(error => console.error('Error updating meal location:', error));
-            }
-            // If `loc` is not "both" and meal is only on this one day, delete from database
-            else if (mealToRemove.loc !== 'both' && !isMealInMultipleDays) {
-                axios.delete(`http://localhost:8080/api/recipes/id/${mealID}`)
-                    .then(() => console.log(`Meal ${mealID} deleted from database.`))
-                    .catch(error => console.error('Error deleting meal:', error));
+    setMeals(updatedMealPlanner);
+        // If `loc` is "both" and meal is only on this one day, update `loc` to "shop"
+        if (mealToRemove.loc === 'both' && !isMealInMultipleDays) {
+            let mealRep = mealToRemove;
+            try {
+                const response = await axios.get(`http://localhost:8080/api/recipes/id/${mealID}`);
+                mealRep = response.data;
+            } catch (error) {
+                console.error(`Error fetching recipe ${mealID}:`, error);
             }
 
-            // Return the updated meal planner state
-            return updatedMealPlanner;
-        });
+            mealRep.loc = 'shop';  // set to shop
+
+            // Update the database with the new `loc` value
+            axios.put(`http://localhost:8080/api/recipes/id/${mealID}`, mealRep)
+                .then(() => console.log(`Meal ${mealID} updated to 'shop' in database.`))
+                .catch(error => console.error('Error updating meal location:', error));
+        }
+        // If `loc` is not "both" and meal is only on this one day, delete from database
+        else if (mealToRemove.loc !== 'both' && !isMealInMultipleDays) {
+            axios.delete(`http://localhost:8080/api/recipes/id/${mealID}`)
+                .then(() => console.log(`Meal ${mealID} deleted from database.`))
+                .catch(error => console.error('Error deleting meal:', error));
+        }
+        // Remove day
+        else if (mealToRemove.loc !== 'both' && isMealInMultipleDays) {
+            let mealRep = mealToRemove;
+            try {
+                const response = await axios.get(`http://localhost:8080/api/recipes/id/${mealID}`);
+                mealRep = response.data;
+            } catch (error) {
+                console.error(`Error fetching recipe ${mealID}:`, error);
+            }
+            mealRep.day = mealRep.day.filter(aDay => aDay !== day);
+
+            // Update the database with the new `loc` value
+            axios.put(`http://localhost:8080/api/recipes/id/${mealID}`, mealRep)
+                .then(() => console.log(`Meal ${mealID} updated to remove ${day} in database.`))
+                .catch(error => console.error('Error updating meal location:', error));
+        }
     };
 
 
