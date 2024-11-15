@@ -65,15 +65,33 @@
     gap: 1rem;
     height: 100%;
     width: 80%;
+    transform: translateX(-1rem);
     overflow-y: auto;
 }
 
 .remBut {
-    margin-left: 1rem;
+    position: absolute;
+    right: 0.15rem;
+    transform: translateY(-1rem);
     background-color: darksalmon;
 }
+
+.mealTitContain {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    width: 9rem;
+    height: 1rem;
+}
+
 .mealTit {
     font-weight: bold;
+    font-size: 1rem;
+    line-height: 1.5;
+    text-align: center;
+    white-space: nowrap; /* Optional */
+    overflow: hidden; /* Optional */
+    text-overflow: ellipsis; /* Optional */
     color: #eaa102;
     float: left;
     filter: drop-shadow(0.08rem 0.08rem 0.05rem #4a2b06);

@@ -3,7 +3,7 @@ import './recipeDisplay.css';
 import threeDots from '../images/3dots.png';
 import axios from 'axios';
 
-const apiKEY = 'f21c78984da446a5b27c08434d710dff';
+const apiKEY = 'f21c78984da446a5b27c08434d710dff'; // I know this is here don't worry it's open-source & free
 
 function capitalize(str) {
   return str.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');

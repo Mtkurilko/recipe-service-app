@@ -154,9 +154,11 @@ function MealPlanner() { // Set a default value here
                             <ul className="mealList">
                                 {(meals[day] || []).map((meal, index) => ( // Handle undefined day arrays
                                     <li key={index}>
-                                        <a className="mealTit" href={meal.url} target="_blank" rel="noopener noreferrer">
-                                            {meal.title}
-                                        </a>
+                                        <div className="mealTitContain">
+                                            <a className="mealTit" href={meal.url} rel="noopener noreferrer">
+                                                {meal.title}
+                                            </a>
+                                        </div>
                                         <button  className="remBut" onClick={() => removeMeal(day, meal.id)}>-</button>
                                     </li>
                                 ))}
@@ -173,9 +175,11 @@ function MealPlanner() { // Set a default value here
                             <ul className="mealList">
                                 {(meals[day] || []).map((meal, index) => ( // Handle undefined day arrays
                                     <li key={index}>
-                                        <a className="mealTit" href={meal.url} target="_blank" rel="noopener noreferrer">
-                                            {meal.title}
-                                        </a>
+                                        <div className="mealTitContain">
+                                            <a className="mealTit" href={meal.url} rel="noopener noreferrer">
+                                                {meal.title}
+                                            </a>
+                                        </div>
                                         <button className="remBut" onClick={() => removeMeal(day, meal.id)}>-</button>
                                     </li>
                                 ))}
