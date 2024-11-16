@@ -43,14 +43,18 @@ function MealDisplay(recipeID) {
         <div className="mealDisplay">
             <h1 className="mealDisplay__title">{recipe.title}</h1>
             <div className="mealDisplay__container">
+                <div className="mealDisplay__col1">
                 <img className="mealDisplay__img" src={recipe.img} alt="Recipe"/>
-                <div className="mealDisplay__description" dangerouslySetInnerHTML={{__html: recipe.instructions}} />
                 <div className="mealDisplay__ingred">
                     {Object.entries(recipe.ingredients).map(([ingredient, amountArray], i) => (
                         <li className="mealDisplay__ingredient" key={i}>
                             {`${capitalize(ingredient.split('(')[0])} (${amountArray[0]}${ingredient.split('(')[1]}`}
                         </li>
                     ))}
+                </div>
+                </div>
+                <div className="mealDisplay__col2">
+                    <div className="mealDisplay__description" dangerouslySetInnerHTML={{__html: recipe.instructions}}/>
                 </div>
             </div>
         </div>
