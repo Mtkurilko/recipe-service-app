@@ -227,7 +227,7 @@ function RecipeDisplay() {
           </div>
         ))
       ) : (
-          <p>Loading...</p> // Show loading state if recipes are still empty
+          <p>Loading... (or no recipes found)</p> // Show loading state if recipes are still empty
       )}
     </div>
   );

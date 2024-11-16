@@ -14,6 +14,20 @@ body {
     filter: drop-shadow(0.1rem 0.1rem 0.1rem rgba(213, 136, 21, 0.69));
 }
 
+#mealActionButton {
+    position: absolute;
+    left: 0.75rem;
+    scale: 125%;
+    z-index: 2;
+}
+
+#mealShop, #mealMeal {
+    background-color: #dfd7ca;
+}
+#mealShop:hover, #mealMeal:hover {
+    background-color: #c6bcad;
+}
+
 /* Main Container */
 .mealDisplay__container {
     display: flex;
@@ -39,6 +53,7 @@ body {
     filter: drop-shadow(0.1rem 0.1rem 0.1rem black);
     object-fit: cover; /* Preserve proportions */
     margin-bottom: 1.5rem;
+    z-index: 1;
 }
 
 /* Ingredients Section */

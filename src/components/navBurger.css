@@ -7,7 +7,7 @@
   top: 1.7rem;
   left: 2.5rem;
 
-  z-index: 1;
+  z-index: 5;
 
   -webkit-user-select: none;
   user-select: none;
@@ -58,7 +58,7 @@
   background: #000000;
   border-radius: 3px;
 
-  z-index: 1;
+  z-index: 5;
 
   transform-origin: 4px 0px;
 
