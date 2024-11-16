@@ -1,7 +1,52 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import './shoppingList.css';
+import axios from "axios";
 
-const defaultItems = [
+let defaultItems = [];
+
+async function getShoppingList() {
+    let defaultItems = []
+    const transformData = (data) => {
+        return data.map((item) => ({
+            title: item.title,
+            url: `recipe/${item.id}`, // Assuming the image URL acts as the 'url' field
+            loc: item.loc,
+            id: item.id,
+            ingredients: Object.fromEntries(
+                Object.entries(item.ingredients).map(([key, values]) => [
+                    key,
+                    [parseFloat(values[0]), Math.random().toFixed(2) * 10], // Assigning random prices for illustration
+                ])
+            )
+        }));
+    };
+    await (async () => {
+        let response1, response2;
+
+        try {
+            response1 = await axios.get(`http://localhost:8080/api/recipes/loc/both`);
+        } catch (error) {
+            response1 = {data: []};
+            console.error("Error fetching 'both' recipes:", error);
+        }
+
+        try {
+            response2 = await axios.get(`http://localhost:8080/api/recipes/loc/shop`);
+        } catch (error) {
+            response2 = {data: []};
+            console.error("Error fetching 'shop' recipes:", error);
+        }
+
+        // Combine and transform data
+        const combinedData = [...response1.data, ...response2.data];
+        defaultItems = transformData(combinedData);
+
+        console.log(defaultItems);
+    })();
+    return defaultItems;
+}
+
+/*const defaultItems = [
     {
         title: "Milkshake",
         url: "https://www.example.com/milkshake",
@@ -60,13 +105,43 @@ const defaultItems = [
             "Turkey (g)": [50, 2.50]
         }
     }
-];
+];*/
 
 function ShoppingList({ items = defaultItems }) {
-    const [shoppingList, setShoppingList] = useState(items);
+    const [shoppingList, setShoppingList] = useState(defaultItems);
 
-    const removeItem = (index) => {
+    useEffect(() => {
+        getShoppingList().then(data => {
+            setShoppingList(data)
+        });
+    }, []);
+
+    const removeItem = async (index) => {
         const updatedList = shoppingList.filter((_, i) => i !== index);
+        const item = shoppingList[index];
+
+        if (item.loc === 'both') {
+            let mealRep = item;
+            try {
+                const response = await axios.get(`http://localhost:8080/api/recipes/id/${item.id}`);
+                mealRep = response.data;
+            } catch (error) {
+                console.error(`Error fetching recipe ${item.id}:`, error);
+            }
+
+            mealRep.loc = 'meal';  // set to meal
+
+            // Update the database with the new `loc` value
+            axios.put(`http://localhost:8080/api/recipes/id/${item.id}`, mealRep)
+                .then(() => console.log(`Meal ${item.id} updated to 'meal' in database.`))
+                .catch(error => console.error('Error updating meal location:', error));
+        }
+        else if (item.loc !== 'both') {
+            axios.delete(`http://localhost:8080/api/recipes/id/${item.id}`)
+                .then(() => console.log(`Meal ${item.id} deleted from database.`))
+                .catch(error => console.error('Error deleting meal:', error));
+        }
+
         setShoppingList(updatedList);
     };
 
@@ -94,7 +169,7 @@ function ShoppingList({ items = defaultItems }) {
                 {shoppingList.map((item, index) => (
                     <li key={index} className="shoppingList__item">
                         <div className="shoppingList__title">
-                            <a className="mealTit" href={item.url} target="_blank" rel="noopener noreferrer">
+                            <a className="mealTit2" href={item.url} rel="noopener noreferrer">
                                 {item.title}
                             </a>
                             <button onClick={() => removeItem(index)} className="removeButton">

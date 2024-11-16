@@ -112,10 +112,7 @@
     height: 6.5rem;
     overflow-y: auto;
     column-count: 2;
-    column-fill: balance;
-    column-gap: 3rem;
-    column-rule-style: double;
-    column-rule-width: 0.3rem;
+
     background-color: #fff8f0;
     padding: 2rem;
     border-radius: 0.15rem;

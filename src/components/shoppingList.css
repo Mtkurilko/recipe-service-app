@@ -41,10 +41,12 @@
     border-radius: 8px; /* Rounded corners for items */
     padding: 1rem; /* Padding for each item */
     transition: background-color 0.3s; /* Smooth background transition */
+    height: 13rem;
+    overflow-y: auto;
 }
 
 .shoppingList__item:hover {
-    background-color: #f0f6ef; /* Highlight on hover */
+    background-color: #e7f4e5; /* Highlight on hover */
 }
 
 #listOfIGS {
@@ -91,4 +93,18 @@
     color: white;
     border-width: 0.1rem;
     float: right;
+}
+
+.mealTit2 {
+    font-weight: bold;
+    font-size: 1rem;
+    line-height: 1.5;
+    width: 10.5rem;
+    overflow: hidden;
+    text-align: center;
+    white-space: nowrap; /* Optional */
+    text-overflow: ellipsis; /* Optional */
+    color: #eaa102;
+    float: left;
+    filter: drop-shadow(0.08rem 0.08rem 0.05rem #4a2b06);
 }
