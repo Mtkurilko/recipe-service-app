@@ -1,5 +1,18 @@
 import React, {useEffect, useRef, useState} from 'react';
 import './recipeSearch.css'
+import axios from 'axios';
+
+
+async function searchRecipes(query) {
+     try {
+        const res = await axios.get(`https://api.spoonacular.com/recipes/`); // query
+        const apiData = res.data;
+        console.log(apiData); // Log data after it's been fetched
+    } catch (error) {
+        console.error("Error fetching query recipes:", error);
+    }
+}
+
 
 function RecipeSearch(props) {
     const inputRef = useRef(null);

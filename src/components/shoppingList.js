@@ -3,46 +3,77 @@ import './shoppingList.css';
 import axios from "axios";
 
 let defaultItems = [];
+const apiKey = 'f21c78984da446a5b27c08434d710dff'; // I know this is here don't worry it's open-source & free
+
+
+async function getPricesOfID(id) {
+    let price_list = {}
+    try {
+        const res = await axios.get(`https://api.spoonacular.com/recipes/${id}/priceBreakdownWidget.json?apiKey=${apiKey}`)
+        console.log("Received price:"+JSON.stringify(res.data));
+        const ingreds = res.data.ingredients;
+
+        ingreds.forEach((ingredient) => {
+            const price = parseFloat((ingredient.price / 100).toFixed(2));
+            const amount = parseFloat(ingredient.amount.us.value);
+            price_list[`${ingredient.name} (${ingredient.amount.us.unit})`] = [amount, price];
+            console.log(ingredient.name, price);
+        })
+
+        return price_list;
+    } catch (error) {
+        console.log("No price fetch: "+error);
+    }
+    return price_list;
+}
+
 
 async function getShoppingList() {
-    let defaultItems = []
+    let defaultItems = [];
+    let ingredDict = [];
+
     const transformData = (data) => {
-        return data.map((item) => ({
+        return data.map((item, i) => ({
             title: item.title,
-            url: `recipe/${item.id}`, // Assuming the image URL acts as the 'url' field
+            url: `recipe/${item.id}`,
             loc: item.loc,
             id: item.id,
-            ingredients: Object.fromEntries(
-                Object.entries(item.ingredients).map(([key, values]) => [
-                    key,
-                    [parseFloat(values[0]), Math.random().toFixed(2) * 10], // Assigning random prices for illustration
-                ])
-            )
+            ingredients: ingredDict[i],
         }));
     };
+
     await (async () => {
-        let response1, response2;
-
+        let combinedData, response2, response1;
         try {
-            response1 = await axios.get(`http://localhost:8080/api/recipes/loc/both`);
+             try {
+                response1 = await axios.get('http://localhost:8080/api/recipes/loc/both');
+            } catch (error) {
+                response1 = {data: []};
+                console.error("Error fetching 'both' recipes:", error);
+            }
+             try {
+                response2 = await axios.get('http://localhost:8080/api/recipes/loc/shop');
+            } catch (error) {
+                response2 = {data: []};
+                console.error("Error fetching 'shop' recipes:", error);
+            }
+            combinedData = [...response1.data, ...response2.data];
         } catch (error) {
-            response1 = {data: []};
-            console.error("Error fetching 'both' recipes:", error);
+            combinedData = [];
+            console.error("Error fetching recipes:", error);
         }
 
-        try {
-            response2 = await axios.get(`http://localhost:8080/api/recipes/loc/shop`);
-        } catch (error) {
-            response2 = {data: []};
-            console.error("Error fetching 'shop' recipes:", error);
+        // Populate price_list
+        for (const item of combinedData) {
+            const prices = await getPricesOfID(item.id); // Assume this fetches prices for all ingredients
+            ingredDict.push(prices);
         }
 
-        // Combine and transform data
-        const combinedData = [...response1.data, ...response2.data];
+        // Transform data after price_list is populated
         defaultItems = transformData(combinedData);
-
         console.log(defaultItems);
     })();
+
     return defaultItems;
 }
 
