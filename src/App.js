@@ -8,7 +8,6 @@ import {
 } from "react-router-dom";
 import ShopList from "./pages/shoplist";
 import About from "./pages/about";
-import recipe from "./pages/recipe";
 import Recipe from "./pages/recipe";
 
 function App() {

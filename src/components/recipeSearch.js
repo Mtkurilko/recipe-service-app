@@ -2,14 +2,64 @@ import React, {useEffect, useRef, useState} from 'react';
 import './recipeSearch.css'
 import axios from 'axios';
 
+const apiKEY = 'f21c78984da446a5b27c08434d710dff'; // I know this is here don't worry it's open-source & free
+
+function formatNumber(num) {
+  if (Number.isInteger(num)) {
+    return num.toString(); // Return as is for whole numbers
+  } else {
+    return num.toFixed(2); // Apply toFixed(2) for decimals
+  }
+}
+
+async function fetchRecipes(que) {
+  try {
+    let res = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?query=${que}&apiKey=${apiKEY}&number=5`);  // query
+    let apiData = res.data;
+    console.log(apiData); // Log data after it's been fetched
+
+    let idList = [];
+    apiData.results.forEach(recipe => {
+        idList.push(recipe.id);
+    })
+
+    res = await axios.get(`https://api.spoonacular.com/recipes/informationBulk?ids=${idList.join(',')}&apiKey=${apiKEY}`);
+    apiData = res.data;
+    console.log(apiData);
+
+    if (apiData && Array.isArray(apiData)) {
+      return apiData.map(recipe => {
+        const mappedIngredients = recipe.extendedIngredients.reduce((acc, ingredient) => {
+          const unitShort = ingredient.measures.us.unitShort || "";
+          const key = `${ingredient.name} (${unitShort})`;
+          acc[key] = [formatNumber(ingredient.amount)];
+          return acc;
+        }, {});
+
+        return {
+          title: recipe.title,
+          ingredients: mappedIngredients,
+          diets: recipe.diets.slice(0,5),
+          instructions: recipe.instructions,
+          id: recipe.id,
+          img: recipe.image
+        };
+      });
+    }
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+
+  return []; // Return an empty array if there was an error or data is undefined
+}
 
 async function searchRecipes(query) {
-     try {
-        const res = await axios.get(`https://api.spoonacular.com/recipes/`); // query
-        const apiData = res.data;
-        console.log(apiData); // Log data after it's been fetched
+    try {
+        const data = await fetchRecipes(query);
+        console.log(data);
+        sessionStorage.setItem('recipes', JSON.stringify(data));
     } catch (error) {
-        console.error("Error fetching query recipes:", error);
+        console.error("Error fetching data:", error);
     }
 }
 
@@ -72,7 +122,7 @@ function RecipeSearch(props) {
         const handleKeyPress = (event) => {
             if (event.key === "Enter") {
                 event.preventDefault();
-                alert(input.value); // This stands in place to search func and retrieve filter params
+                searchRecipes(input.value).then(r => window.location.href='/') // This stands in place to search func and retrieve filter params
                 input.value = ""; // Clear the input field
             }
         };

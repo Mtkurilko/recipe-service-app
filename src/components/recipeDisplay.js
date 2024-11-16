@@ -26,7 +26,7 @@ async function fetchRecipes() {
     if (apiData && apiData.recipes) {
       return apiData.recipes.map(recipe => {
         const mappedIngredients = recipe.extendedIngredients.reduce((acc, ingredient) => {
-          const unitShort = ingredient.measures.metric.unitShort || "";
+          const unitShort = ingredient.measures.us.unitShort || "";
           const key = `${ingredient.name} (${unitShort})`;
           acc[key] = [formatNumber(ingredient.amount)];
           return acc;
