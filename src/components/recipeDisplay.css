@@ -159,6 +159,7 @@
 .addedBox {
     position: fixed;
     top: 5.5rem;
+    right: 47%;
     justify-content: center;
     z-index: 20;
     background-color: rgba(159, 159, 159, 0.36);

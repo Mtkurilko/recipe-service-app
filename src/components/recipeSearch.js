@@ -12,9 +12,9 @@ function formatNumber(num) {
   }
 }
 
-async function fetchRecipes(que) {
+async function fetchRecipes(que,cus,diet,intol) {
   try {
-    let res = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?query=${que}&apiKey=${apiKEY}&number=5`);  // query
+    let res = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?query=${que}&cuisine=${cus}&diet=${diet}&intolerances=${intol}&apiKey=${apiKEY}&number=5`);  // query
     let apiData = res.data;
     console.log(apiData); // Log data after it's been fetched
 
@@ -53,9 +53,27 @@ async function fetchRecipes(que) {
   return []; // Return an empty array if there was an error or data is undefined
 }
 
-async function searchRecipes(query) {
+async function searchRecipes(query,filters) {
+    let cus, diet, intol = "";
+
+    for (const val of filters) {
+        if (val < 10) {
+            cus = `${document.getElementById("but"+val).innerText}`;
+        }
+        else if (val < 20 && val >= 10) {
+            intol += `${document.getElementById("but"+val).innerText},`;
+        }
+        else if (val >= 20) {
+            diet = `${document.getElementById("but"+val).innerText}`;
+        }
+    }
+
+    if (intol !== "") { // Remove ending comma
+        intol = intol.slice(0, -1)
+    }
+
     try {
-        const data = await fetchRecipes(query);
+        const data = await fetchRecipes(query,cus,diet,intol);
         console.log(data);
         sessionStorage.setItem('recipes', JSON.stringify(data));
     } catch (error) {
@@ -79,7 +97,7 @@ function RecipeSearch(props) {
     }
 
     const executeChoices = (fil) => {
-        for (const val of [0,1,2,10,11,12,20,21,22]) {
+        for (const val of [0,1,2,3,10,11,12,20,21,22]) {
             if (fil.includes(val)) {
                 document.getElementById("but"+val).style.backgroundColor = 'green';
             }
@@ -110,7 +128,7 @@ function RecipeSearch(props) {
             }
             else {
                 newFilters.push(num)
-                 setFilters(newFilters)
+                setFilters(newFilters)
                 executeChoices(newFilters)
              }
         }
@@ -122,7 +140,7 @@ function RecipeSearch(props) {
         const handleKeyPress = (event) => {
             if (event.key === "Enter") {
                 event.preventDefault();
-                searchRecipes(input.value).then(r => window.location.href='/') // This stands in place to search func and retrieve filter params
+                searchRecipes(input.value,filters).then(r => window.location.href='/') // This stands in place to search func and retrieve filter params
                 input.value = ""; // Clear the input field
             }
         };
@@ -157,12 +175,16 @@ function RecipeSearch(props) {
                         <div id="options">
                             <div id="cuisine">
                                 <button className="optionButton" id="but0" onClick={() => handleButtonChoice(0)}
-                                >Greek
+                                >Mediterranean
                                 </button>
                                 <button className="optionButton" id="but1" onClick={() => handleButtonChoice(1)}
                                 >Italian
                                 </button>
-                                <button className="optionButton" id="but2" onClick={() => handleButtonChoice(2)}>Irish
+                                <button className="optionButton" id="but2" onClick={() => handleButtonChoice(2)}
+                                >Asian
+                                </button>
+                                <button className="optionButton" id="but3" onClick={() => handleButtonChoice(3)}
+                                >Latin American
                                 </button>
                             </div>
                             <div id="allergies">
@@ -177,13 +199,15 @@ function RecipeSearch(props) {
                             </div>
                             <div id="diet">
                                 <button className="optionButton" id="but20"
-                                        onClick={() => handleButtonChoice(20)}>Vegan
+                                        onClick={() => handleButtonChoice(20)}
+                                >Vegan
                                 </button>
                                 <button className="optionButton" id="but21"
-                                        onClick={() => handleButtonChoice(21)}>Vegetarian
+                                        onClick={() => handleButtonChoice(21)}
+                                >Vegetarian
                                 </button>
-                                <button className="optionButton" id="but22" onClick={() => handleButtonChoice(22)}>Other
-                                    Diet
+                                <button className="optionButton" id="but22" onClick={() => handleButtonChoice(22)}
+                                >Ketogenic
                                 </button>
                             </div>
                         </div>
