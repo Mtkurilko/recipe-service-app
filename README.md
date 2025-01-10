@@ -1,70 +1,140 @@
-# Getting Started with Create React App
+# Recipe Search and Meal Planner
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A full-stack application for searching, planning, and managing recipes, built using React for the frontend, Java for the backend, and PostgreSQL as the database.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+### Frontend:
+- **Built with React**: A dynamic and responsive user interface.
+- **Recipe Display**:
+  - Displays five recipes on the front page with:
+    - Brief image
+    - Title
+    - Ingredient list
+    - Description
+    - Intolerances/Diet/Type of food
+  - Recipe data is fetched using the [Spoonacular API](https://spoonacular.com/food-api) with a free API key.
+- **Search Bar with Dropdown Filters**:
+  - Query recipes by name or ingredients.
+  - Refine searches with filters for cuisine, diet, and intolerances.
+- **Meal Planner Integration**:
+  - Add recipes to specific days of the week.
+  - Navigate to the Meal Planner page to view recipes for each day.
+  - Expand recipes for detailed information or remove them with a click.
+- **Shopping List**:
+  - Organizes ingredients by recipe.
+  - Provides a summarized ingredient list with cost predictions.
+  - Remove individual recipes or expand them to view details.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Backend:
+- **Java**: Provides RESTful APIs to manage user interactions and handle database queries.
+- **PostgreSQL**: Stores recipe metadata (e.g., IDs) for quick retrieval and to support dynamic recipe generation.
+- **Dynamic Recipe Pages**:
+  - Generated based on IDs fetched from the API.
+  - Information is pulled dynamically without pre-built storage, supporting infinite recipe generation.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## Technology Stack
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Frontend:
+- React
+- Axios (for API calls)
+- CSS for styling
 
-### `npm run build`
+### Backend:
+- Java (Spring Boot)
+- PostgreSQL
+- RESTful APIs
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### API:
+- [Spoonacular API](https://spoonacular.com/food-api) (Free API Key)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Screenshots and Demo
 
-### `npm run eject`
+### Screenshots:
+1. **Homepage**: Displays five recipes with key details.  
+   ![Homepage](src/images/homePage.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+2. **Search Bar with Filters**: Allows users to query recipes and apply filters.  
+   ![Search Bar](src/images/search.png)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. **Addition Buttons**: Allows users to add recipe to planner or shopping list.  
+   ![Add Buttons](src/images/addButtons.png)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+4. **Meal Planner**: View and manage recipes for specific days of the week.  
+   ![Meal Planner](src/images/planner.png)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+5. **Shopping List**: Organize and summarize ingredients for recipes.  
+   ![Shopping List](src/images/shoppingList.png)
 
-## Learn More
+6. **Recipe Page**: View all infor for a specific recipe.  
+   ![Recipe Page](src/images/recipePage.png)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Project Structure
 
-### Code Splitting
+```
+recipe-service-app/
+├── src/
+│   ├── components/    # Reusable components and ther CSS styles
+│   ├── pages/         # Pages (Homepage, Meal Planner, etc.)
+│   └── images/        # Images
+├── backend/               # Java backend code
+│   ├── src/
+│   │   ├── main/
+│   │   └── test/        # Unit tests
+└── README.md            # Project documentation
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
+## Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Local Setup:
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Mtkurilko/recipe-service-app.git
+   ```
 
-### Making a Progressive Web App
+2. Navigate to the frontend and backend directories to install dependencies:
+   - **Frontend**:
+     ```bash
+     cd frontend
+     npm install
+     npm start
+     ```
+   - **Backend**:
+     ```bash
+     cd backend
+     mvn spring-boot:run
+     ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+3. Set up the PostgreSQL database:
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+4. Add your Spoonacular API key to the environment variables in both frontend and backend configurations.
 
-### Deployment
+### Built Version:
+[Live Demo](https://your-online-demo-link.com)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+---
 
-### `npm run build` fails to minify
+## Highlights
+- **Frontend-First Approach**:
+  - All dynamic interactions and rendering occur on the React frontend.
+  - Backend services (in `backend/`) are limited to API calls and database management.
+- **Scalability**:
+  - Dynamic API fetching and database storage allow infinite recipe generation.
+- **Database Integration**:
+  - Stores and retrieves recipes efficiently to reduce API calls while maintaining dynamic content generation.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+
+For further inquiries or technical details, refer to the source code.
+

@@ -12,11 +12,29 @@ function formatNumber(num) {
   }
 }
 
+function isNotEmpty(str) {
+  return typeof str === 'string' && str.trim() !== '';
+}
+
 async function fetchRecipes(que,cus,diet,intol) {
   try {
-    let res = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?query=${que}&cuisine=${cus}&diet=${diet}&intolerances=${intol}&apiKey=${apiKEY}&number=5`);  // query
+    let searchCriteria = "";
+
+    if (isNotEmpty(cus)) {
+        searchCriteria += `&cuisine=${cus}`;
+    }
+    if (isNotEmpty(diet)) {
+        searchCriteria += `&diet=${diet}`;
+    }
+    if (isNotEmpty(intol)) {
+        searchCriteria += `&intolerances=${intol}`;
+    }
+
+    console.log('Search Crit', searchCriteria);
+
+    let res = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?query=${que}${searchCriteria}&apiKey=${apiKEY}&number=5`);  // query
     let apiData = res.data;
-    console.log(apiData); // Log data after it's been fetched
+    console.log('Fetched Data', apiData); // Log data after it's been fetched
 
     let idList = [];
     apiData.results.forEach(recipe => {
@@ -54,17 +72,19 @@ async function fetchRecipes(que,cus,diet,intol) {
 }
 
 async function searchRecipes(query,filters) {
-    let cus, diet, intol = "";
+    let cus = "";
+    let diet = "";
+    let intol = "";
 
     for (const val of filters) {
         if (val < 10) {
-            cus = `${document.getElementById("but"+val).innerText}`;
+            cus = `${document.getElementById("but"+val).innerText.toLowerCase()}`;
         }
         else if (val < 20 && val >= 10) {
-            intol += `${document.getElementById("but"+val).innerText},`;
+            intol += `${document.getElementById("but"+val).innerText.split("-")[0].toLowerCase()},`;
         }
         else if (val >= 20) {
-            diet = `${document.getElementById("but"+val).innerText}`;
+            diet = `${document.getElementById("but"+val).innerText.toLowerCase()}`;
         }
     }
 
@@ -73,6 +93,7 @@ async function searchRecipes(query,filters) {
     }
 
     try {
+        console.log('PARAMS:',query,cus,diet,intol)
         const data = await fetchRecipes(query,cus,diet,intol);
         console.log(data);
         sessionStorage.setItem('recipes', JSON.stringify(data));
@@ -140,7 +161,7 @@ function RecipeSearch(props) {
         const handleKeyPress = (event) => {
             if (event.key === "Enter") {
                 event.preventDefault();
-                searchRecipes(input.value,filters).then(r => window.location.href='/') // This stands in place to search func and retrieve filter params
+                searchRecipes(input.value,filters).then(r => window.location.href='/') // This stands in place to search func and retrieve filter params (r => window.location.href='/')
                 input.value = ""; // Clear the input field
             }
         };
@@ -188,13 +209,13 @@ function RecipeSearch(props) {
                                 </button>
                             </div>
                             <div id="allergies">
-                                <button className="optionButton" id="but10" onClick={() => handleButtonChoice(10)}>Nut
+                                <button className="optionButton" id="but10" onClick={() => handleButtonChoice(10)}>Nut-Free
                                 </button>
                                 <button className="optionButton" id="but11"
-                                        onClick={() => handleButtonChoice(11)}>Dairy
+                                        onClick={() => handleButtonChoice(11)}>Dairy-Free
                                 </button>
                                 <button className="optionButton" id="but12"
-                                        onClick={() => handleButtonChoice(12)}>Gluten
+                                        onClick={() => handleButtonChoice(12)}>Gluten-Free
                                 </button>
                             </div>
                             <div id="diet">

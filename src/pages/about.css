@@ -1,0 +1,150 @@
+/* about.css */
+
+/* General Layout */
+#about-page {
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 2rem auto;
+    max-width: 1200px;
+    font-family: 'Arial', sans-serif;
+}
+
+#about-section {
+    text-align: center;
+}
+
+#about-title {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #f39c12;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+}
+
+#about-content {
+    margin-top: 1.5rem;
+    text-align: left;
+    line-height: 1.6;
+    color: #34495e;
+}
+
+/* Center Section */
+section {
+    margin-bottom: 2rem;
+    padding: 1rem 2rem;
+    background-color: #fafafa;
+    border: 1px solid #eaeaea;
+    border-radius: 10px;
+    display: inline-block;
+    width: 100%;
+    text-align: left;
+}
+
+h2 {
+    font-size: 1.8rem;
+    color: #f39c12;
+    margin-bottom: 0.5rem;
+    border-left: 4px solid #f39c12;
+    padding-left: 1rem;
+}
+
+ul {
+    list-style-type: disc;
+    margin-left: 2rem;
+    color: #34495e;
+}
+
+ul ul {
+    list-style-type: circle;
+    margin-left: 1.5rem;
+}
+
+/* Screenshot Section */
+#screenshots-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+    justify-items: center; /* Centering images */
+}
+
+.screenshot {
+    text-align: center;
+    padding: 1rem;
+    border: 1px solid #eaeaea;
+    border-radius: 8px;
+    background-color: #ffffff;
+    cursor: pointer;
+}
+
+.screenshot img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-top: 0.5rem;
+}
+
+/* Expanded Image Overlay */
+.image-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.expanded-image-container {
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.expanded-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Links */
+a {
+    color: #f39c12;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Footer */
+#project-footer {
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #7f8c8d;
+}
+
+/* Adjustments for Mobile */
+@media screen and (max-width: 768px) {
+    #about-page {
+        padding: 1rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    #about-title {
+        font-size: 2rem;
+    }
+
+    #screenshots-section {
+        grid-template-columns: 1fr;
+    }
+}
